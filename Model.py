@@ -12,46 +12,40 @@ class Model:
                 steps.append(list(arr))  # Append current state of the array
         return steps
 
-
+    
     def merge_sort(arr):
-        # Step 1: Divide the array into two halves
-        if len(arr) > 1:
-            mid = len(arr) // 2
-            left_half = arr[:mid]
-            right_half = arr[mid:]
-
-            # Step 2: Recursively sort the two halves
-            steps = []
-            steps.extend(Model.merge_sort(left_half))
-            steps.extend(Model.merge_sort(right_half))
-
-            # Step 3: Merge the sorted halves
-            i = j = k = 0
-
-            while i < len(left_half) and j < len(right_half):
-                if left_half[i] < right_half[j]:
-                    arr[k] = left_half[i]
-                    i += 1
-                else:
-                    arr[k] = right_half[j]
-                    j += 1
-                k += 1
-            steps.append(list(arr))  # Append current state of the array
-
-            while i < len(left_half):
-                arr[k] = left_half[i]
-                i += 1
-                k += 1
-                steps.append(list(arr))  # Append current state of the array
-
-            while j < len(right_half):
-                arr[k] = right_half[j]
-                j += 1
-                k += 1
-                steps.append(list(arr))  # Append current state of the array
-
-            return steps
-
+         # Step 1: Divide the array into two halves
+         if len(arr) <= 1:
+             return arr
+         mid = len(arr) // 2
+         left = arr[:mid]
+         right = arr[mid:]
+         # Step 3: Merge the sorted sub-arrays
+         steps = []
+         steps.extend(Model.merge_sort(left))
+         steps.extend(Model.merge_sort(right))
+         
+         i = j = k = 0
+         while i < len(left) and j < len(right):
+             if left[i] < right[j]:
+                 arr[k] = left[i]
+                 i += 1
+             else:
+                 arr[k] = right[j]
+                 j += 1
+             k += 1
+             steps.append(list(arr))  # Append current state of the array
+         while i < len(left):
+             arr[k] = left[i]
+             i += 1
+             k += 1
+             steps.append(list(arr))  # Append current state of the array
+         while j < len(right):
+             arr[k] = right[j]
+             j += 1
+             k += 1
+             steps.append(list(arr))  # Append current state of the array
+         return steps
 
     def insertion_sort(arr):
         # Step 1: Iterate through the array
