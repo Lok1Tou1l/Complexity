@@ -1,6 +1,9 @@
+import time 
+
 class Model:
     """Model class for the sorting algorithms"""
     def bubble_sort(arr):
+        start_time = time.time()
         # Step 1: Iterate through the array
         n = len(arr)
         steps = []
@@ -10,44 +13,50 @@ class Model:
                 if arr[j] > arr[j + 1]:
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 steps.append(list(arr))  # Append current state of the array
-        return steps
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return steps, execution_time
 
     
     def merge_sort(arr):
-         # Step 1: Divide the array into two halves
-         if len(arr) <= 1:
-             return arr
-         mid = len(arr) // 2
-         left = arr[:mid]
-         right = arr[mid:]
-         # Step 3: Merge the sorted sub-arrays
-         steps = []
-         steps.extend(Model.merge_sort(left))
-         steps.extend(Model.merge_sort(right))
-         
-         i = j = k = 0
-         while i < len(left) and j < len(right):
-             if left[i] < right[j]:
-                 arr[k] = left[i]
-                 i += 1
-             else:
-                 arr[k] = right[j]
-                 j += 1
-             k += 1
-             steps.append(list(arr))  # Append current state of the array
-         while i < len(left):
-             arr[k] = left[i]
-             i += 1
-             k += 1
-             steps.append(list(arr))  # Append current state of the array
-         while j < len(right):
-             arr[k] = right[j]
-             j += 1
-             k += 1
-             steps.append(list(arr))  # Append current state of the array
-         return steps
+        start_time = time.time()
+        # Step 1: Divide the array into two halves
+        if len(arr) <= 1:
+            return arr
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+        # Step 3: Merge the sorted sub-arrays
+        steps = []
+        steps.extend(Model.merge_sort(left))
+        steps.extend(Model.merge_sort(right))
+        
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+            steps.append(list(arr))  # Append current state of the array
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+            steps.append(list(arr))  # Append current state of the array
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+            steps.append(list(arr))  # Append current state of the array
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return steps, execution_time
 
     def insertion_sort(arr):
+        start_time = time.time()
         # Step 1: Iterate through the array
         steps = []
         for i in range(1, len(arr)):
@@ -59,10 +68,13 @@ class Model:
                 j -= 1
             arr[j + 1] = key
             steps.append(list(arr))  # Append current state of the array
-        return steps
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return steps, execution_time
 
 
     def quick_sort(arr):
+        start_time = time.time()
         # Step 1: Choose a pivot element
         if len(arr) <= 1:
             return arr
@@ -75,10 +87,13 @@ class Model:
         steps.extend(Model.quick_sort(left))
         steps.extend(middle)
         steps.extend(Model.quick_sort(right))
-        return steps
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return steps, execution_time
 
 
     def bogo_sort(arr):
+        start_time = time.time()
         import random
 
         def is_sorted(arr):
@@ -92,7 +107,6 @@ class Model:
         while not is_sorted(arr):
             random.shuffle(arr)
             steps.append(list(arr))  # Append current state of the array
-        return steps
-
-    
-    
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return steps, execution_time

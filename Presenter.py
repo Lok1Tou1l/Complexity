@@ -19,18 +19,23 @@ class Presenter(QObject):
         arr = [int(x) for x in arr]
 
         if algorithm_dropdown == "Bubble Sort":
-            sorted_arr = model.bubble_sort(arr)
+            sorted_arr,execution_time = model.bubble_sort(arr)
             self.view.display_area.setText("\n".join(str(x) for x in sorted_arr))
+            self.view.execution_time.setText(str(execution_time))
         if algorithm_dropdown == "Merge Sort":
-            sorted_arr = model.merge_sort(arr)
+            sorted_arr,execution_time = model.merge_sort(arr)
             self.view.display_area.setText("\n".join(str(x) for x in sorted_arr))
+            self.view.execution_time.setText(str(execution_time))
         if algorithm_dropdown == "Insertion Sort":
-            sorted_arr = model.insertion_sort(arr)
+            sorted_arr,execution_time = model.insertion_sort(arr)
             self.view.display_area.setText("\n".join(str(x) for x in sorted_arr))
+            self.view.execution_time.setText(str(execution_time))
         if algorithm_dropdown == "Quick Sort":
-            sorted_arr = model.quick_sort(arr)
+            sorted_arr,execution_time = model.quick_sort(arr)
             self.view.display_area.setText("\n".join(str(x) for x in sorted_arr))
+            self.view.execution_time.setText(str(execution_time))
         if algorithm_dropdown == "Bogo Sort":
-            sorted_arr = model.bogo_sort(arr)
+            sorted_arr,execution_time = model.bogo_sort(arr)
             self.view.display_area.setText("\n".join(str(x) for x in sorted_arr))
+            self.view.execution_time.setText(str(execution_time))
      
